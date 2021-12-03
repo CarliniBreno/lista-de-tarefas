@@ -5,15 +5,14 @@ function adicionarT() {
 
     var novoItem = areaTemplate.content.cloneNode(true);
 
-    var li = novoItem.querySelector("li")
-
-    li.appendChild(document.createTextNode(content))
+    novoItem.querySelector("li").append(content)
 
     var lista = document.getElementById("lista");
 
     lista.appendChild(novoItem);
 }
 
-function adicionarItem(){
 
+function remove(elemento){
+    elemento.parentElement.remove()
 }
