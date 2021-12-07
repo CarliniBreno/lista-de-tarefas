@@ -1,42 +1,41 @@
-    var enter = document.getElementById('nova-tarefa');
-
-    enter.addEventListener('keyup', (e) => {
-
-        if (e.key == "Enter") {
-            adicionarT()
+window.onload = () => {
+    listarTodasTarefas();
+  }
+  
+  var tarefas = ["primeira tarefa", "segunda tarefa"];
+  
+  function listarTodasTarefas() {
+    debugger;
+  
+    var lista = document.getElementById("lista");
+    // lista.innerHTML = "";
+  
+    for (var posicao = 0; posicao < tarefas.length; posicao++) {
+      var textoNovaTarefa = tarefas[posicao]
+  
+      var modeloItem = document.getElementById("modeloItem");
+      var novoItem = modeloItem.content.cloneNode(true);
+  
+      var li = novoItem.querySelector('li');
+      li.append(textoNovaTarefa); ''
+  
+      lista.append(novoItem);
     }
-})
-
-function adicionarT() {
-    var content = document.getElementById("nova-tarefa");
-
-    var areaTemplate = document.getElementById("template");
-
-    var newItem = areaTemplate.content.cloneNode(true);
-
-    var listItem = newItem.querySelector("li");
-    
-    listItem.append(content.value)
-
-    var list = document.getElementById("lista");
-
-    if (content.value == "") {
-        alert("Digita alguma coisa aí, mula");
-    }
-    else {
-        var itemNum = list.children.length
-        if (itemNum % 2 == 0){
-            listItem.style.backgroundColor = "#E4EFF1"
-    }
-        if (itemNum % 3 == 0) {
-            listItem.style.color = "red"
-        }
-        list.append(newItem);
-        content.value = "";
-    }
-}
-
-
-function remove(elemento){
-    elemento.parentElement.remove()
-}
+  }
+  
+  function adicionarTarefa() {
+    debugger;
+  
+    var novaTarefa = document.getElementById("nova-tarefa");
+  
+    tarefas.push(novaTarefa.value);
+    listarTodasTarefas();
+  
+    novaTarefa.value = "";
+  }
+  
+  function remover(elemento) {
+    elemento.parentElement.remove();
+  }
+  
+  
