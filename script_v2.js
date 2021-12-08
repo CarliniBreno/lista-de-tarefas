@@ -1,41 +1,43 @@
+var tasks = JSON.parse(localStorage.getItem("tasks"));
+
 window.onload = () => {
     listarTodasTarefas();
   }
-  
-  var tarefas = ["primeira tarefa", "segunda tarefa"];
-  
+
   function listarTodasTarefas() {
-    debugger;
   
     var lista = document.getElementById("lista");
-    // lista.innerHTML = "";
+    lista.innerHTML = "";
   
-    for (var posicao = 0; posicao < tarefas.length; posicao++) {
-      var textoNovaTarefa = tarefas[posicao]
-  
+    tasks.forEach (function (value, position) {
       var modeloItem = document.getElementById("modeloItem");
       var novoItem = modeloItem.content.cloneNode(true);
   
       var li = novoItem.querySelector('li');
-      li.append(textoNovaTarefa); ''
+      li.value = position
+      li.append(value); ''
   
       lista.append(novoItem);
-    }
+    })
   }
   
   function adicionarTarefa() {
-    debugger;
   
     var novaTarefa = document.getElementById("nova-tarefa");
   
-    tarefas.push(novaTarefa.value);
+    tasks.push(novaTarefa.value);
     listarTodasTarefas();
   
     novaTarefa.value = "";
+    save();
   }
   
   function remover(elemento) {
-    elemento.parentElement.remove();
+    var posicao = elemento.parentElement.value;
+    tasks.splice(posicao, 1);
+    listarTodasTarefas();
   }
-  
-  
+
+function save(){
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
